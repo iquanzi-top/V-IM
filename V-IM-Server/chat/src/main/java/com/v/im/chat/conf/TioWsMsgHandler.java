@@ -1,4 +1,4 @@
-package com.v.im.tio;
+package com.v.im.chat.conf;
 
 import com.v.im.api.entity.Message;
 import com.v.im.api.entity.SendInfo;
@@ -29,7 +29,6 @@ import org.tio.websocket.server.handler.IWsMsgHandler;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 /**

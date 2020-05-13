@@ -1,4 +1,4 @@
-package com.v.im.conf;
+package com.v.im.oauth.conf;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.context.annotation.Bean;

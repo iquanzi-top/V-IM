@@ -1,4 +1,4 @@
-package com.v.im.tio;
+package com.v.im.chat.conf;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package com.v.im.tio;
+package com.v.im.chat.conf;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

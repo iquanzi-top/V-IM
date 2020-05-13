@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "v.im.admin.id",
+      "type": "java.lang.String",
+      "description": "Description for v.im.admin.id."
+  }
+] }

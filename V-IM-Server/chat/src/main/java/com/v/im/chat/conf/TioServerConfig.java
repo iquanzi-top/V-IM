@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.v.im.tio;
+package com.v.im.chat.conf;
 
 import org.tio.utils.time.Time;
 

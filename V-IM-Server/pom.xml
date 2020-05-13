@@ -7,7 +7,13 @@
     <groupId>com.v.im</groupId>
     <artifactId>V-IM-Server</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <modules>
+        <module>oauth2</module>
+        <module>common</module>
+        <module>sys</module>
+        <module>chat</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>v-im-server</name>
     <description>V-IM 服务端</description>
@@ -118,11 +124,7 @@
             <artifactId>hutool-all</artifactId>
             <version>5.0.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.11.2</version>
-        </dependency>
+
     </dependencies>
 
     <build>

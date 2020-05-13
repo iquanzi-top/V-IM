@@ -8,13 +8,16 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author zkp
+ */
 @Service
 @Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
     private static ApplicationContext applicationContext = null;
 
-    private static Logger logger = LoggerFactory.getLogger(SpringContextHolder.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpringContextHolder.class);
 
     /**
      * 取得存储在静态变量中的ApplicationContext.

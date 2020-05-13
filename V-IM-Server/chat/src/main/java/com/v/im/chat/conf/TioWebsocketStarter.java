@@ -1,4 +1,4 @@
-package com.v.im.tio;
+package com.v.im.chat.conf;
 
 import org.tio.server.ServerGroupContext;
 import org.tio.websocket.server.WsServerStarter;
