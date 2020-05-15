@@ -48,7 +48,7 @@ public class RegisterController {
                 imUser.setLoginName(phone);
                 imUser.setMobile(phone);
                 imUser.setName(name);
-                imUser.setAvatar("/img/default-user.png");
+                imUser.setAvatar("/static/img/default-user.png");
                 imUserService.registerUser(imUser);
                 registerResult.setResultCode(RegisterResult.SUCCESS);
                 registerResult.setMessage("SUCCESS");

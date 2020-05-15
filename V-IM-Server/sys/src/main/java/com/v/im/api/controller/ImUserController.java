@@ -4,16 +4,13 @@ package com.v.im.api.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.v.im.api.entity.Message;
 import com.v.im.api.entity.SendInfo;
-import com.v.im.common.utils.ChatUtils;
+import com.v.im.chat.conf.StartTioRunner;
 import com.v.im.message.entity.ImMessage;
 import com.v.im.message.service.IImMessageService;
-import com.v.im.tio.StartTioRunner;
-import com.v.im.tio.TioServerConfig;
-import com.v.im.tio.WsOnlineContext;
+
 import com.v.im.user.entity.ImUser;
 import com.v.im.user.service.IImUserFriendService;
 import com.v.im.user.service.IImUserService;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -121,7 +118,7 @@ public class ImUserController {
         message.setMine(false);
         message.setTimestamp(System.currentTimeMillis());
         message.setType(ChatUtils.FRIEND);
-        message.setAvatar(host + "/img/icon.png");
+        message.setAvatar(host + "/static/img/icon.png");
         message.setUsername("系统消息");
         sendInfo.setMessage(message);
 
