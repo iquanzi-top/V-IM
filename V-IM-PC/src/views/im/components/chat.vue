@@ -2,7 +2,11 @@
   <div class="im-chat" v-if="chat.name">
     <div class="im-chat-top" v-if="chat">
       <span>{{ chat.name }}</span>
-      <a href="javascript:void(0)" @click="modal = true" class="pull-right menu">
+      <a
+        href="javascript:void(0)"
+        @click="modal = true"
+        class="pull-right menu"
+      >
         <Icon type="md-menu" />
       </a>
     </div>

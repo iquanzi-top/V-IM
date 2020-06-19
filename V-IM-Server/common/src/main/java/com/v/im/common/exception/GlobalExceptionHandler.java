@@ -25,8 +25,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ChatException.class)
     @ResponseBody
     public ResultBody<String> bizExceptionHandler(ChatException e){
-        logger.error("发生业务异常！原因是：{}",e.getErrorMsg());
-        return new ResultBody<String>().error(ResultCodeEnum.NULL_POINTER);
+        logger.error("发生异常！原因是：{}",e.getErrorMsg());
+        return new ResultBody<String>().error(ResultCodeEnum.CHAT_ERROR);
     }
 
     /**
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ResultBody<String> exceptionHandler(NullPointerException e){
         logger.error("发生空指针异常！原因是:",e);
-        return new ResultBody<String>().error(ResultCodeEnum.BODY_NOT_MATCH);
+        return new ResultBody<String>().error(ResultCodeEnum.NULL_POINTER);
     }
 
 

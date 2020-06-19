@@ -32,20 +32,6 @@ public class ResultBody<T> implements Serializable {
      */
     private T result;
 
-
-    /**
-     * 成功
-     * @param data res
-     * @return ReturnMessage
-     */
-    public ResultBody<T> success(T data) {
-        ResultBody<T> rb = new ResultBody<>();
-        rb.setCode(ResultCodeEnum.SUCCESS.getResultCode());
-        rb.setMessage(ResultCodeEnum.SUCCESS.getResultMsg());
-        rb.setResult(data);
-        return rb;
-    }
-
     /**
      * 失败
      */

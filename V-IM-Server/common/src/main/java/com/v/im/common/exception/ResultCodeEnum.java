@@ -20,6 +20,7 @@ public enum ResultCodeEnum implements BaseErrorInfoInterface  {
     FILE_SIZE_ERROR("900","附件不能超过2M"),
     FILE_TYPE_ERROR("901","文件类型不支持"),
     FILE_UPLOAD_ERROR("911","上传错误"),
+    CHAT_ERROR("902","聊天室异常"),
     ;
 
     /**
