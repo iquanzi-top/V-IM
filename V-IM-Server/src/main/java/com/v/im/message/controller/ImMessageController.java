@@ -87,7 +87,7 @@ public class ImMessageController {
             message.setFromid(imMessage.getFromId());
             message.setCid(String.valueOf(imMessage.getId()));
             message.setContent(imMessage.getContent());
-            message.setTimestamp(new Date().getTime());
+            message.setTimestamp(System.currentTimeMillis());
             messageList.add(message);
         }
         Map<String, Object> map = new HashMap<>();
