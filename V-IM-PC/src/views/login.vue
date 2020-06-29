@@ -51,34 +51,11 @@
       </div>
     </div>
 
-    <Modal
-      closable
-      class="user-model"
-      v-model="showRegister"
-      footer-hide
-      title="注册新用户"
-      width="300"
-    >
+    <Modal closable class="user-model" v-model="showRegister" footer-hide title="注册新用户" width="300">
       <Input v-model="registerPhone" class="setting-item" placeholder="手机" />
-      <Input
-        v-model="registerUsername"
-        class="setting-item"
-        placeholder="名称"
-      />
-      <Input
-        v-model="registerPassword"
-        type="password"
-        class="setting-item"
-        placeholder="密码"
-      />
-      <Button
-        type="primary"
-        ghost
-        long
-        @click="saveRegister"
-        style="margin: 1rem 0"
-        >保存</Button
-      >
+      <Input v-model="registerUsername" class="setting-item" placeholder="名称"/>
+      <Input v-model="registerPassword" type="password" class="setting-item" placeholder="密码"/>
+      <Button type="primary" ghost long @click="saveRegister" style="margin: 1rem 0">保存</Button>
     </Modal>
   </div>
 </template>

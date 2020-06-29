@@ -29,6 +29,7 @@ public class ImUserFriendServiceImpl extends ServiceImpl<ImUserFriendMapper, ImU
      * @param userId 用户ID
      * @return 好友分组的列表
      */
+   @Override
    public List<ImGroup> getUserFriends(String userId){
        return this.baseMapper.getUserFriends(userId);
     }

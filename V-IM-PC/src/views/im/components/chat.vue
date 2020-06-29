@@ -10,26 +10,14 @@
       <div class="im-chat-main-left">
         <div class="im-chat-main-box messages" id="message-box">
           <ul>
-            <li
-              v-for="(item, index) in messageList"
-              :key="index"
-              :class="{ 'im-chat-mine': item.mine }"
-            >
+            <li v-for="(item, index) in messageList" :key="index" :class="{ 'im-chat-mine': item.mine }">
               <div class="im-chat-user">
-                <img :src="item.avatar" alt="头像" />
-                <cite v-if="item.mine"
-                  ><i>{{ item.timestamp }}</i
-                  >{{ item.username }}</cite
-                >
-                <cite v-if="!item.mine"
-                  >{{ item.username }}<i>{{ item.timestamp }}</i></cite
-                >
+                <img :src="item.avatar" alt="头像"/>
+                <cite v-if="item.mine"><i>{{ item.timestamp }}</i>{{ item.username }}</cite>
+                <cite v-if="!item.mine">{{ item.username }}<i>{{ item.timestamp }}</i></cite>
               </div>
               <div class="im-chat-text">
-                <pre
-                  v-html="item.content"
-                  v-on:click="openImageProxy($event)"
-                ></pre>
+                <pre v-html="item.content" v-on:click="openImageProxy($event)"></pre>
               </div>
             </li>
           </ul>
@@ -37,57 +25,20 @@
         <div class="im-chat-footer">
           <div class="im-chat-tool">
             <Icon type="ios-happy-outline" @click="showFaceBox()"></Icon>
-            <Upload
-              :action="action"
-              name="file"
-              :format="imgFormat"
-              :data="tokenImg"
-              :show-upload-list="false"
-              :headers="headers"
-              :max-size="5120"
-              :with-credentials="true"
-              :before-upload="beforeUpload"
-              :on-progress="handleStart"
-              :on-format-error="handleFormatError"
-              :on-exceeded-size="handleImgMaxSize"
-              :on-success="handleSuccess"
-              :on-error="handleError"
-            >
+            <Upload :action="action" name="file" :format="imgFormat" :data="tokenImg" :show-upload-list="false" :headers="headers"
+              :max-size="5120" :with-credentials="true" :before-upload="beforeUpload" :on-progress="handleStart" :on-format-error="handleFormatError"
+              :on-exceeded-size="handleImgMaxSize" :on-success="handleSuccess" :on-error="handleError">
               <Icon type="ios-image-outline"></Icon>
             </Upload>
-            <Upload
-              :action="action"
-              name="file"
-              :format="fileFormat"
-              :data="tokenFile"
-              :show-upload-list="false"
-              :headers="headers"
-              :max-size="102400"
-              :with-credentials="true"
-              :before-upload="beforeUpload"
-              :on-progress="handleStart"
-              :on-format-error="handleFormatError"
-              :on-exceeded-size="handleFileMaxSize"
-              :on-success="handleSuccess"
-              :on-error="handleError"
-            >
+            <Upload :action="action" name="file" :format="fileFormat" :data="tokenFile" :show-upload-list="false" :headers="headers"
+              :max-size="102400" :with-credentials="true" :before-upload="beforeUpload" :on-progress="handleStart" :on-format-error="handleFormatError"
+              :on-exceeded-size="handleFileMaxSize" :on-success="handleSuccess" :on-error="handleError">
               <Icon type="ios-folder-open-outline"></Icon>
             </Upload>
-            <Faces
-              v-show="showFace"
-              @click="showFace = true"
-              class="faces-box"
-              @insertFace="insertFace"
-            ></Faces>
-            <Button class="history-message-btn" @click="getHistoryMessage()"
-              >聊天记录</Button
-            >
+            <Faces v-show="showFace" @click="showFace = true" class="faces-box" @insertFace="insertFace"></Faces>
+            <Button class="history-message-btn" @click="getHistoryMessage()">聊天记录</Button>
           </div>
-          <textarea
-            v-model="messageContent"
-            class="textarea"
-            @keyup.enter="mineSend()"
-          ></textarea>
+          <textarea v-model="messageContent" class="textarea" @keyup.enter="mineSend()"></textarea>
           <div class="im-chat-send">
             <Button @click="mineSend()">发送</Button>
           </div>
@@ -95,12 +46,7 @@
       </div>
       <div v-if="chat.type === '1'" class="im-chat-users">
         <ul class="chat-user-list">
-          <li
-            v-for="(item, index) in userList"
-            :key="index"
-            @dblclick="showChat(item)"
-            @click="showUser(item)"
-          >
+          <li v-for="(item, index) in userList" :key="index" @dblclick="showChat(item)" @click="showUser(item)">
             <span class="im-chat-avatar">
               <img :src="[host + item.avatar]" alt="" />
             </span>
@@ -109,14 +55,7 @@
         </ul>
       </div>
     </div>
-    <Modal
-      closable
-      class="user-model"
-      v-model="modal"
-      footer-hide
-      :title="chat.name"
-      width="300"
-    >
+    <Modal closable class="user-model" v-model="modal" footer-hide :title="chat.name" width="300">
       <p class="user-model-img">
         <img :src="chat.avatar" class="img" />
       </p>
@@ -133,6 +72,9 @@
           <label>邮箱：</label>
           <span>{{ chat.email }}</span>
         </p>
+        <p>
+          <Button type="success" long @click="addFriend(chat.id)">添加好友</Button>
+        </p>
       </div>
       <div v-if="chat.type === '1'">
         <p class="user-model-item">
@@ -141,49 +83,24 @@
         </p>
       </div>
     </Modal>
-    <Drawer
-      title="聊天记录"
-      :closable="true"
-      v-model="showHistory"
-      class="history-message"
-      width="60%"
-    >
+    <Drawer title="聊天记录" :closable="true" v-model="showHistory" class="history-message" width="60%">
       <div class="im-chat-main">
         <div class="messages" id="his-chat-message">
           <ul>
-            <li
-              v-for="(item, index) in hisMessageList"
-              :key="index"
-              :class="{ 'im-chat-mine': item.mine }"
-            >
+            <li v-for="(item, index) in hisMessageList" :key="index" :class="{ 'im-chat-mine': item.mine }">
               <div class="im-chat-user" id="historyMessageBox">
                 <img :src="[host + item.avatar]" />
-                <cite v-if="item.mine"
-                  ><i>{{ item.timestamp }}</i
-                  >{{ item.username }}</cite
-                >
-                <cite v-if="!item.mine"
-                  >{{ item.username }}<i>{{ item.timestamp }}</i></cite
-                >
+                <cite v-if="item.mine"><i>{{ item.timestamp }}</i>{{ item.username }}</cite>
+                <cite v-if="!item.mine">{{ item.username }}<i>{{ item.timestamp }}</i></cite>
               </div>
               <div class="im-chat-text">
-                <pre
-                  v-html="item.content"
-                  v-on:click="openImageProxy($event)"
-                ></pre>
+                <pre v-html="item.content" v-on:click="openImageProxy($event)"></pre>
               </div>
             </li>
           </ul>
         </div>
       </div>
-      <Page
-        :total="count"
-        size="small"
-        show-total
-        class="page"
-        :page-size="pageSize"
-        @on-change="getHistoryMessage"
-      />
+      <Page :total="count" size="small" show-total class="page" :page-size="pageSize" @on-change="getHistoryMessage"/>
     </Drawer>
   </div>
 </template>
@@ -264,6 +181,9 @@ export default {
   },
   props: ["chat"],
   methods: {
+    addFriend(id) {
+      console.log("添加好友%s", id);
+    },
     showChat(user) {
       let self = this;
       if (user.id !== self.$store.state.user.id) {
@@ -348,6 +268,7 @@ export default {
     },
     // 附件和图片点击展开
     openImageProxy: function(event) {
+      console.log(event);
       let self = this;
       event.preventDefault();
       if (event.target.nodeName === "IMG") {
@@ -768,7 +689,7 @@ export default {
 .chat-user-list {
   list-style: none;
   margin: 0;
-  padding: 1rem;
+  padding: 0.5rem;
 
   & > li {
     margin-bottom: 1rem;
