@@ -20,11 +20,8 @@
       <Col span="18">{{ user.email }}</Col>
     </Row>
     <Row>
-      <Col span="18">&nbsp;</Col>
-      <Col span="6" class="text-right">
-        <i-button type="primary" shape="circle" size="large" @click="showChat()"
-          >发送消息</i-button
-        >
+      <Col span="6" class="btn">
+        <i-button type="primary" size="large" @click="showChat()">发送消息</i-button>
       </Col>
     </Row>
   </div>
@@ -82,6 +79,11 @@ export default {
     text-align: justify;
     text-align-last: justify;
     font-weight: bold;
+    margin-right: 2rem;
+  }
+
+  .btn {
+    margin-top: 1rem;
   }
 }
 </style>
