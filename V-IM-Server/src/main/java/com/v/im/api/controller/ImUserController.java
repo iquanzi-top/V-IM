@@ -76,10 +76,9 @@ public class ImUserController {
         objectMap.put("friends", imUserFriendService.getUserFriends(user.getId()));
 
         //获取本人信息
-        String host = ChatUtils.getHost(request);
         QueryWrapper<ImUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("login_name", username);
-        user.setAvatar(host + user.getAvatar());
+        user.setAvatar(user.getAvatar());
         user.setPassword(null);
         objectMap.put("me", user);
 
