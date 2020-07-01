@@ -1,5 +1,5 @@
 export default {
-  app_name: "V-IM",
+  app_name: "JML-IM",
   http_protocol: "http",
   http_port: 8080,
   ws_port: 9326,

@@ -73,7 +73,7 @@
           <span>{{ chat.email }}</span>
         </p>
         <p>
-          <Button type="success" long @click="addFriend(chat.id)">添加好友</Button>
+          <Button type="success" size="large" long @click="addFriend(chat.id)">添加好友</Button>
         </p>
       </div>
       <div v-if="chat.type === '1'">

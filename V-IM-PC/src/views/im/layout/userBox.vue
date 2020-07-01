@@ -12,11 +12,7 @@
             </h5>
             <transition name="fade">
               <ul class="userList" v-if="group.expansion">
-                <li
-                  class="user"
-                  v-for="(user, index) in group.userList"
-                  :key="index"
-                >
+                <li class="user" v-for="(user, index) in group.userList" :key="index">
                   <a href="javascript:;" @click="showUser(user)">
                     <img :src="host + user.avatar" />
                     <b>{{ user.name }}</b>
@@ -32,11 +28,7 @@
     <div class="chat-box">
       <Top></Top>
       <Welcome v-if="first"></Welcome>
-      <UserInfo
-        class="user-box-view"
-        v-if="!first"
-        v-bind:user="user"
-      ></UserInfo>
+      <UserInfo class="user-box-view" v-if="!first" v-bind:user="user"></UserInfo>
     </div>
   </div>
 </template>

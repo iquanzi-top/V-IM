@@ -9,31 +9,15 @@
       <Alert v-if="showErr" type="error">{{ err }}</Alert>
       <div class="item">
         <label>手机：</label>
-        <Input
-          prefix="ios-contact-outline"
-          v-model="username"
-          placeholder="手机"
-          class="item-input"
-        />
+        <Input prefix="ios-contact-outline" v-model="username" placeholder="手机" class="item-input"/>
       </div>
       <div class="item">
         <label>密码：</label>
-        <Input
-          prefix="ios-lock-outline"
-          type="password"
-          v-model="password"
-          placeholder="密码"
-          class="item-input"
-        />
+        <Input prefix="ios-lock-outline" type="password" v-model="password" placeholder="密码" class="item-input"/>
       </div>
       <div class="item">
         <label>服务：</label>
-        <Input
-          prefix="ios-settings-outline"
-          v-model="host"
-          placeholder="服务"
-          class="item-input"
-        />
+        <Input prefix="ios-settings-outline" v-model="host" placeholder="服务" class="item-input"/>
       </div>
       <div class="btn item">
         <Button type="primary" @click="login()" icon="md-contact">登录</Button>
@@ -41,12 +25,7 @@
       <div class="item register">
         <a type="info" class="pull-right" @click="showRegister = true">
           <Icon type="ios-cloud-circle" />
-          <span>注册</span>
-        </a>
-      </div>
-      <div>
-        <a href="javascript:;" @click="open">
-          https://gitee.com/lele-666/V-IM
+          <span>立即注册</span>
         </a>
       </div>
     </div>
@@ -81,7 +60,7 @@ export default {
       showErr: false,
       showSetting: false,
       showRegister: false,
-      host: "101.200.151.183"
+      host: "192.168.18.8"
     };
   },
   components: {

@@ -1,35 +1,16 @@
 <template>
   <div>
-    <Input
-      search
-      v-model="search"
-      placeholder="搜索"
-      size="small"
-      class="search"
-      @on-focus="showSearch()"
-    />
+    <Input search v-model="search" placeholder="搜索好友" size="small" class="search" @on-focus="showSearch()"/>
     <div class="search-div" v-show="showSearchDiv">
       <div class="search-item">
-        <Input
-          search
-          v-model="search"
-          placeholder="搜索"
-          size="small"
-          class="search"
-          @on-search="searchUser"
-          @on-keyup="searchUser"
-        />
-        <Icon
-          type="ios-close"
-          class="text-right"
-          @click="closeSearchDiv()"
-        ></Icon>
+        <Input search v-model="search" placeholder="搜索好友" size="small" class="search" @on-search="searchUser" @on-keyup="searchUser"/>
+        <Icon type="ios-close" class="text-right" @click="closeSearchDiv()"></Icon>
       </div>
       <div class="group-box">
         <ul class="user-list">
           <li class="user" v-for="(user, index) in searchUserList" :key="index">
             <a href="javascript:" @click="showChat(user)">
-              <img :src="user.avatar" alt="头像" />
+              <img :src="host + user.avatar" alt="头像" />
               <b>{{ user.name }}</b>
               <p>{{ user.sign }}</p>
             </a>

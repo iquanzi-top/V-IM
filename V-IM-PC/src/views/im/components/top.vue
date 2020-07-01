@@ -1,24 +1,12 @@
 <template>
   <div class="im-top" style="-webkit-app-region: drag">
-    <a
-      href="javascript:void(0)"
-      @click="close"
-      style="-webkit-app-region: no-drag"
-    >
+    <a href="javascript:void(0)" @click="close" style="-webkit-app-region: no-drag">
       <Icon type="ios-close" class="text-right"></Icon>
     </a>
-    <a
-      href="javascript:void(0)"
-      @click="max"
-      style="-webkit-app-region: no-drag"
-    >
+    <a href="javascript:void(0)" @click="max" style="-webkit-app-region: no-drag">
       <Icon :type="icon" class="text-right"></Icon>
     </a>
-    <a
-      href="javascript:void(0)"
-      @click="min"
-      style="-webkit-app-region: no-drag"
-    >
+    <a href="javascript:void(0)" @click="min" style="-webkit-app-region: no-drag">
       <Icon type="ios-remove" class="text-right"></Icon>
     </a>
   </div>

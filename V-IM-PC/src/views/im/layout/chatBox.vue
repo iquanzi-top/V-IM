@@ -172,7 +172,6 @@ export default {
     cursor: pointer;
     font-weight: 200;
     margin-bottom: 2rem;
-
     h5 {
       padding: 0.5rem 0;
       cursor: pointer;

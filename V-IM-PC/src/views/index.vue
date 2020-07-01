@@ -3,21 +3,26 @@
     <div class="left-bar" style="-webkit-app-region: drag">
       <ul>
         <li class="userPhoto" @click="modal = true">
-          <img :src="user.avatar" />
+          <img :src="host + user.avatar" />
         </li>
-        <li>
+        <li title="消息">
           <router-link v-bind:to="'/index/chatBox'">
             <Icon type="ios-text-outline" />
           </router-link>
         </li>
-        <li>
+        <li title="好友">
           <router-link v-bind:to="'/index/userBox'">
             <Icon type="ios-contact-outline" />
           </router-link>
         </li>
-        <li>
+        <li title="群聊">
           <router-link v-bind:to="'/index/chatGroupBox'">
             <Icon type="ios-contacts-outline" />
+          </router-link>
+        </li>
+        <li title="设置">
+          <router-link v-bind:to="'/index/settings'">
+            <Icon type="ios-settings-outline" />
           </router-link>
         </li>
       </ul>
@@ -25,16 +30,9 @@
     <keep-alive>
       <router-view class="content" />
     </keep-alive>
-    <Modal
-      closable
-      class="user-model"
-      v-model="modal"
-      footer-hide
-      :title="user.name"
-      width="300"
-    >
+    <Modal closable class="user-model" v-model="modal" footer-hide :title="user.name" width="300">
       <p class="user-model-img">
-        <img :src="user.avatar" class="img" />
+        <img :src="host + user.avatar" class="img" />
       </p>
       <p class="user-model-item">
         <label>姓名：</label>
@@ -55,11 +53,13 @@
   </div>
 </template>
 <script>
+import conf from "../views/im/conf";
 import { logout } from "../utils/ChatUtils";
 
 export default {
   data() {
     return {
+      host: conf.getHostUrl(),
       user: {},
       modal: false
     };
