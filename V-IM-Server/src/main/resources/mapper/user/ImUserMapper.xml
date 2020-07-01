@@ -25,7 +25,7 @@
             u.email  AS u_email
         FROM
             im_group g
-            LEFT JOIN im_group_user gu ON g.id = gu.group_id
+            LEFT JOIN im_chat_group_user gu ON g.id = gu.chat_group_id
             LEFT JOIN im_user u ON u.id = gu.user_id
         WHERE
             g.user_id = #{userId}
