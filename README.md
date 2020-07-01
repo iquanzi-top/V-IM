@@ -1,6 +1,4 @@
 ### 需要购买的阿里云的同学 请点击支持 [阿里云优惠券2000元](https://www.aliyun.com/minisite/goods?userCode=h5hdai4u)
-### 务必记得点赞哦
-### QQ群：617853658 验证请说明 V-IM （并且附上点赞的 gitee 用户名，不点赞不让进哦）
 
 ### 本项目Fork自 [V-IM](https://gitee.com/lele-666/V-IM)，主要在Feat_MrZ分支进行开发，关于项目的更多信息，请走 [空间门](https://gitee.com/lele-666/V-IM)
 
