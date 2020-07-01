@@ -109,6 +109,12 @@ export default new Vuex.Store({
       ChatListUtils.setChatList(state.user.id, tempChatList);
       state.chatList = tempChatList;
     },
+    // 初始时加载聊天历史记录
+    initHistoryMessage: function(state, messageList) {
+      state.messageList = messageList;
+      let m = messageList.slice(-1).pop();
+      state.messageListMap[m.id] = messageList;
+    },
     setMessageList: function(state, messageList) {
       state.messageList = messageList;
     },

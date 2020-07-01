@@ -12,7 +12,7 @@
           <ul>
             <li v-for="(item, index) in messageList" :key="index" :class="{ 'im-chat-mine': item.mine }">
               <div class="im-chat-user">
-                <img :src="item.avatar" alt="头像"/>
+                <img :src="host + item.avatar" alt="头像"/>
                 <cite v-if="item.mine"><i>{{ item.timestamp }}</i>{{ item.username }}</cite>
                 <cite v-if="!item.mine">{{ item.username }}<i>{{ item.timestamp }}</i></cite>
               </div>
@@ -350,6 +350,39 @@ export default {
             imageLoad("his-chat-message");
           });
         });
+    },
+    initMessage() {
+      let self = this;
+      let pageNo = 1;
+      if (!pageNo) {
+        pageNo = 1;
+      }
+      let param = new FormData();
+      param.set("chatId", self.chat.id);
+      param.set("chatType", self.chat.type);
+      param.set("fromId", self.$store.state.user.id);
+      param.set("pageNo", pageNo);
+
+      let requestApi = RequestUtils.getInstance();
+      requestApi
+        .request(conf.getHisUrl(), param)
+        .then(response => {
+          return response.json();
+        })
+        .then(json => {
+          let list = json.messageList.map(function (element) {
+            element.content = transform(element.content);
+            return element;
+          });
+          let tempList = list.map(function (message) {
+            message.timestamp = self.formatDateTime(
+                    new Date(message.timestamp)
+            );
+            return message;
+          });
+          // 将历史记录放入内存
+          self.$store.commit("initHistoryMessage", tempList.reverse());
+        });
     }
   },
   watch: {
@@ -357,6 +390,11 @@ export default {
     chat: function() {
       let self = this;
       self.messageList = [];
+
+      if (!self.$store.state.messageListMap[self.chat.id]) {
+        self.initMessage();
+      }
+
       // 从内存中取聊天信息
       let cacheMessages = self.$store.state.messageListMap[self.chat.id];
       if (cacheMessages) {
@@ -385,6 +423,8 @@ export default {
     this.$nextTick(() => {
       imageLoad("message-box");
     });
+    console.log("mounted加载数据");
+    this.initMessage();
   }
 };
 </script>
