@@ -5,11 +5,7 @@
       <div class="group-box">
         <ul class="user-list">
           <li class="user" v-for="(chat, index) in chatList" :key="index">
-            <a
-              href="javascript:"
-              @click="showChat(chat)"
-              :class="currentChat && currentChat.id === chat.id ? 'active' : ''"
-            >
+            <a href="javascript:" @click="showChat(chat)" :class="currentChat && currentChat.id === chat.id ? 'active' : ''">
               <i v-if="chat.unReadCount > 0">{{ chat.unReadCount }}</i>
               <img :src="chat.avatar" alt="头像" />
               <b>{{ chat.name }}</b>
@@ -106,12 +102,9 @@ export default {
         JSON.parse(JSON.stringify(self.$route.query.chat))
       );
     }
-    console.log("activated", self.currentChat);
+    console.log("当前会话：", self.currentChat);
     // 重新设置chatList
-    self.$store.commit(
-      "setChatList",
-      ChatListUtils.getChatList(self.$store.state.user.id)
-    );
+    self.$store.commit("setChatList", ChatListUtils.getChatList(self.$store.state.user.id));
     // 每次滚动到最底部
     self.$nextTick(() => {
       imageLoad("message-box");

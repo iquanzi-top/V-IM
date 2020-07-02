@@ -2,20 +2,28 @@
   <div class="chat-panel">
     <div class="chat-box">
       <Top></Top>
-      <Welcome></Welcome>
+      <UserSettings />
     </div>
   </div>
 </template>
 <script>
 import Top from "../components/top.vue";
-import Welcome from "../components/welcome.vue";
 import conf from "../conf";
+import UserSettings from "../components/userSettings.vue";
 import { ChatListUtils, MessageTargetType } from "../../../utils/ChatUtils";
 
 export default {
+  data () {
+    return {
+      host: conf.getHostUrl(),
+      switch1: false,
+      single: false,
+      value: ''
+    }
+  },
   components: {
     Top,
-    Welcome
+    UserSettings
   },
   computed: {
     //需要展示的用户群组
@@ -28,12 +36,10 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      host: conf.getHostUrl()
-    };
-  },
   methods: {
+    change (status) {
+      this.$Message.info("开关状态：", status);
+    },
     // 打开一个聊天对话框
     showChat: function(user) {
       let self = this;
@@ -175,6 +181,10 @@ export default {
         width: 12rem;
       }
     }
+  }
+
+  .space_top {
+    margin-top: 2rem;
   }
 }
 </style>

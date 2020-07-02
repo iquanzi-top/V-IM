@@ -5,7 +5,7 @@
       <div class="group-box">
         <ul class="group-list">
           <li v-for="(group, index) in userFriendList" :key="index">
-            <h5 v-on:click="group.expansion = !group.expansion">
+            <h5 v-on:click="switchExpansion(group)">
               <Icon type="ios-arrow-forward" />
               <span>{{ group.name }} </span>
               <span class="count">({{ group.userList.length }})</span>
@@ -71,6 +71,10 @@ export default {
   },
 
   methods: {
+    // 切换组展开状态
+    switchExpansion: function(g) {
+      this.$store.commit("updateUserFriendExpansion", g);
+    },
     // 打开一个聊天对话框
     showChat: function(user) {
       let self = this;

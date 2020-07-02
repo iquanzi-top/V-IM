@@ -382,6 +382,11 @@ export default {
           });
           // 将历史记录放入内存
           self.$store.commit("initHistoryMessage", tempList.reverse());
+
+          // 每次滚动到最底部
+          this.$nextTick(() => {
+            imageLoad("message-box");
+          });
         });
     }
   },
@@ -419,12 +424,11 @@ export default {
     }
   },
   mounted: function() {
+    this.initMessage();
     // 每次滚动到最底部
     this.$nextTick(() => {
       imageLoad("message-box");
     });
-    console.log("mounted加载数据");
-    this.initMessage();
   }
 };
 </script>
