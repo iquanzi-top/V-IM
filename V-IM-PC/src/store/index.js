@@ -10,7 +10,6 @@ import {
   MessageTargetType,
   transform
 } from "../utils/ChatUtils";
-import conf from "../views/im/conf";
 
 Vue.use(Vuex);
 
@@ -45,6 +44,13 @@ export default new Vuex.Store({
     },
     setUser: function(state, user) {
       state.user = user;
+    },
+    updateUserFriendExpansion: function(state, group) {
+      state.userFriendList.forEach(g => {
+        if (g.id === group.id) {
+          g.expansion = !g.expansion;
+        }
+      });
     },
     setUserFriendList: function(state, userFriendList) {
       state.userFriendList = userFriendList;
@@ -113,7 +119,9 @@ export default new Vuex.Store({
     initHistoryMessage: function(state, messageList) {
       state.messageList = messageList;
       let m = messageList.slice(-1).pop();
-      state.messageListMap[m.id] = messageList;
+      if (m) {
+        state.messageListMap[m.id] = messageList;
+      }
     },
     setMessageList: function(state, messageList) {
       state.messageList = messageList;
@@ -195,7 +203,7 @@ export default new Vuex.Store({
             chat["unReadCount"] = 0;
           }
           chat["unReadCount"] = chat["unReadCount"] + 1;
-          chat.avatar = conf.getHostUrl() + state.chatMap[message.id].avatar;
+          chat.avatar = state.chatMap[message.id].avatar;
           tempChat = chat;
         } else {
           tempChatList.push(chat);
@@ -221,7 +229,7 @@ export default new Vuex.Store({
         tempChat = new Chat(
           message.id,
           groupChat.name,
-          conf.getHostUrl() + groupChat.avatar,
+          groupChat.avatar,
           1,
           message.content,
           state.user.mobile,
