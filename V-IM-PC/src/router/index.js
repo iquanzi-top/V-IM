@@ -6,6 +6,10 @@ import ChatGroupBox from "../views/im/layout/chatGroupBox.vue";
 import Settings from "../views/im/layout/settings"
 
 Vue.use(Router);
+const VueRouterPush = Router.prototype.push;
+Router.prototype.push = function push(to) {
+  return VueRouterPush.call(this, to).catch(err => err)
+};
 
 export default new Router({
   routes: [
