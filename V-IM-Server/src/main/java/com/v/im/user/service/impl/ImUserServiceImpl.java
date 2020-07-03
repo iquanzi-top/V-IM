@@ -27,9 +27,11 @@ import java.util.List;
 @Qualifier(value = "imUserService")
 public class ImUserServiceImpl extends ServiceImpl<ImUserMapper, ImUser> implements IImUserService {
 
+    /**管理员帐号ID*/
     @Value("${v.im.admin.id}")
     private String adminId;
 
+    /**默认群组ID*/
     @Value("${v.im.default.chat.id}")
     private String defaultChatId;
 
@@ -45,6 +47,13 @@ public class ImUserServiceImpl extends ServiceImpl<ImUserMapper, ImUser> impleme
     @Resource
     @Qualifier(value = "imChatGroupUserService")
     private IImChatGroupUserService imChatGroupUserService;
+
+    @Override
+    public List<ImUser> findByKey(String key) {
+        QueryWrapper<ImUser> queryWrapper = new QueryWrapper<>();
+        //queryWrapper.eq("login_name", key).or().eq("mobile", key).or().like("name", key);
+        return baseMapper.findByKey(key);
+    }
 
     @Override
     public ImUser getByLoginName(String loginName) {

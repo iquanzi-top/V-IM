@@ -18,6 +18,21 @@ import java.util.List;
 public interface IImUserService extends IService<ImUser> {
 
     /**
+     * 根据关键词查找用户。<br/>
+     * <hr/>
+     * <b>取合集：</b>
+     * <ol>
+     *     <li>模糊匹配：name</li>
+     *     <li>精确匹配：mobile、login_name</li>
+     * </ol>
+     * @param key 搜索关键词
+     * @author Mr.Z
+     * @date 2020-07-03 12:00:05
+     * @return 用户集合
+     */
+    List<ImUser> findByKey(String key);
+
+    /**
      * 根据登录名称获取用户
      * @param loginName 登录名
      * @return 用户

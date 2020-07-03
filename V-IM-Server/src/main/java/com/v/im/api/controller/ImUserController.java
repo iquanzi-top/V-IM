@@ -100,6 +100,18 @@ public class ImUserController {
     }
 
     /**
+     * 获取用户对象
+     * @param key 登录名
+     * @author Mr.Z
+     * @date 2020-07-03 10:30:31
+     * @return IM用户对象
+     */
+    @RequestMapping("/findUser")
+    public List<ImUser> findUser(String key) {
+        return imUserService.findByKey(key);
+    }
+
+    /**
      * 发送信息给用户
      * 注意：目前仅支持发送给在线用户
      *
