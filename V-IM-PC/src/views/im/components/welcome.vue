@@ -1,21 +1,67 @@
 <template>
   <div class="welcome-message">
-    <img src="~@/static/icon.png" alt="icon" />
-    <h2>欢迎使用V-IM系统</h2>
-    <Search class="search-box" @showChat="showChat"></Search>
+    <div v-if="show">
+      <SearchPortal class="search-box" searchKey="用户帐号或群组名称" :smallPrefix="show" @searchResult="searchResult"></SearchPortal>
+      <Divider />
+      <Row type="flex" justify="space-around" class-name="code-row-bg">
+        <Col span="5">
+          <Card>
+            <div>
+              <img style="height: 2.5em;" src="~@/static/icon.png" />
+              <h3>默认Logo</h3>
+            </div>
+          </Card>
+        </Col>
+        <Col span="5">
+          <Card>
+            <div>
+              <img style="height: 2.5em;" src="~@/static/icon.png" />
+              <h3>默认Logo</h3>
+            </div>
+          </Card>
+        </Col>
+        <Col span="5">
+          <Card>
+            <div>
+              <img style="height: 2.5em;" src="~@/static/icon.png" />
+              <h3>默认Logo</h3>
+            </div>
+          </Card>
+        </Col>
+        <Col span="5">
+          <Card>
+            <div>
+              <img style="height: 2.5em;" src="~@/static/icon.png" />
+              <h3>默认Logo</h3>
+            </div>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+    <div v-if="!show">
+      <img src="~@/static/icon.png" alt="icon" />
+      <SearchPortal class="search-box" searchKey="用户帐号或群组名称" :smallPrefix="show" @searchResult="searchResult"></SearchPortal>
+    </div>
   </div>
 </template>
 <script>
-import Search from "./search.vue";
+import SearchPortal from "./searchPortal.vue";
 
 export default {
   name: "welcome",
+  data: function () {
+    return {
+      show: false,
+      result: []
+    }
+  },
   components: {
-    Search
+    SearchPortal
   },
   methods: {
-    showChat: function() {
-      console.log("搜索");
+    searchResult: function (data) {
+      this.show = data.length > 0;
+      this.result = data;
     }
   }
 };
@@ -24,6 +70,7 @@ export default {
 <style scoped lang="scss">
 .welcome-message {
   display: table-cell !important;
+  margin-top: 4rem;
   height: 100%;
   text-align: center;
   vertical-align: middle;
