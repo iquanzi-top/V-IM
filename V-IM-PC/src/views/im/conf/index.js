@@ -6,6 +6,8 @@ export default {
   init: "/api/user/init",
   his_url: "/api/message/list",
   chat_users_url: "/api/user/chatUserList",
+  find_user: "/api/user/findUser",
+  friend_add: "/api/friend/add",
   token_path: "/oauth/token",
   register_url: "/register",
   ws_protocol: "ws",
@@ -29,6 +31,12 @@ export default {
   },
   getHisUrl: function() {
     return this.getHostUrl() + this.his_url;
+  },
+  getSearchUserUrl: function() {
+    return this.getHostUrl() + this.find_user;
+  },
+  getAddFriendUrl: function() {
+    return this.getHostUrl() + this.friend_add;
   },
   getRegisterUrl: function() {
     return this.getHostUrl() + this.register_url;
