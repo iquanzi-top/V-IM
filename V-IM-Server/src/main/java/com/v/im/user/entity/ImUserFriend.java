@@ -9,10 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * <p>
- * 
- * </p>
- *
+ * 用户好友记录<br/>
  * @author jobob
  * @since 2018-12-31
  */

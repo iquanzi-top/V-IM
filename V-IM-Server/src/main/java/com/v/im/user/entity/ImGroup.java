@@ -11,10 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * <p>
- * 
- * </p>
- *
+ * 用户好友分组<br/>
  * @author 乐天
  * @since 2018-10-23
  */

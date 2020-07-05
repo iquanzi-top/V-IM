@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- *
+ * IM用户对象
  * </p>
  *
  * @author 乐天

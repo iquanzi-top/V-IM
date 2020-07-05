@@ -8,15 +8,21 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.v.im.api.entity.Message;
 import com.v.im.message.entity.ImMessage;
 import com.v.im.message.service.IImMessageService;
+import com.v.im.user.entity.ImChatGroup;
 import com.v.im.user.entity.ImUser;
 import com.v.im.user.service.IImUserService;
+import com.v.im.user.service.impl.ImChatGroupServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -26,6 +32,7 @@ import java.util.*;
  * @author 乐天
  * @since 2018-10-08
  */
+@Slf4j
 @RestController
 @RequestMapping("/api/message")
 public class ImMessageController {
@@ -42,7 +49,9 @@ public class ImMessageController {
     @Qualifier(value = "imUserService")
     private IImUserService imUserService;
 
-
+    @Resource
+    @Qualifier(value = "imChatGroupServiceImpl")
+    private ImChatGroupServiceImpl imChatGroupService;
     /**
      * 获取聊天记录
      *
@@ -52,6 +61,15 @@ public class ImMessageController {
     @ResponseBody
     @RequestMapping("list")
     public Map<String, Object> list(String chatId, String fromId,String chatType, Long pageNo) {
+        String n;
+        if (chatType.equals(FRIEND)) {
+            ImUser user = imUserService.getById(chatId);
+            n = user.getName();
+        } else {
+            ImChatGroup group = imChatGroupService.getById(chatId);
+            n = group.getName();
+        }
+        log.info("拉取[{}]--{}的聊天记录", chatType.equals(FRIEND) ? "好友" : "群组", n);
         if (StringUtils.isEmpty(chatId) || StringUtils.isEmpty(fromId)) {
             return new HashMap<>();
         }

@@ -24,6 +24,7 @@ import java.util.UUID;
 @RequestMapping("api")
 public class UploadController {
 
+    /**默认上传文件路径*/
     @Value("${web.upload-path}")
     private String uploadPath;
 
