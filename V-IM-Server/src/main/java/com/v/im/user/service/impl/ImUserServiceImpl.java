@@ -50,8 +50,6 @@ public class ImUserServiceImpl extends ServiceImpl<ImUserMapper, ImUser> impleme
 
     @Override
     public List<ImUser> findByKey(String key) {
-        QueryWrapper<ImUser> queryWrapper = new QueryWrapper<>();
-        //queryWrapper.eq("login_name", key).or().eq("mobile", key).or().like("name", key);
         return baseMapper.findByKey(key);
     }
 

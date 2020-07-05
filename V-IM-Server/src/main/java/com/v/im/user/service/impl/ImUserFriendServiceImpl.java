@@ -1,6 +1,7 @@
 package com.v.im.user.service.impl;
 
 import com.v.im.user.entity.ImGroup;
+import com.v.im.user.entity.ImUser;
 import com.v.im.user.entity.ImUserFriend;
 import com.v.im.user.mapper.ImUserFriendMapper;
 import com.v.im.user.service.IImUserFriendService;
@@ -32,5 +33,20 @@ public class ImUserFriendServiceImpl extends ServiceImpl<ImUserFriendMapper, ImU
    @Override
    public List<ImGroup> getUserFriends(String userId){
        return this.baseMapper.getUserFriends(userId);
+    }
+
+    @Override
+    public boolean addFriend(ImUser user, ImUser friend) {
+       // 添加用户user的好友friend记录
+        ImUserFriend imUserFriend = new ImUserFriend();
+        imUserFriend.preInsert();
+        imUserFriend.setUserId(user.getId());
+        imUserFriend.setFriendId(friend.getId());
+        // 自己的默认好友分组
+        imUserFriend.setUserGroupId(user.getDefaultGroupId());
+
+        // 好友的默认好友分组
+        imUserFriend.setFriendGroupId(friend.getDefaultGroupId());
+        return this.save(imUserFriend);
     }
 }
