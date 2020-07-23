@@ -31,7 +31,31 @@
       <router-view class="content" />
     </keep-alive>
     <Modal closable class="user-model" v-model="modal" footer-hide :title="user.name" width="300">
-      <p class="user-model-img">
+      <Row gutter="2">
+        <Col span="6">
+          <img :src="host + user.avatar" class="img" />
+        </Col>
+        <Col span="16">
+          <Row gutter="2">
+            <Col class-name="col-weight" span="7">姓名：</Col>
+            <Col span="15">{{ user.name }}</Col>
+          </Row>
+          <Row gutter="2" class-name="row-top">
+            <Col class-name="col-weight" span="7">帐号：</Col>
+            <Col span="15">{{ user.loginName }}</Col>
+          </Row>
+        </Col>
+      </Row>
+      <Divider />
+      <Row gutter="2" class-name="row-top row-bottom">
+        <Col class-name="col-weight" span="5">手机：</Col>
+        <Col span="17">{{ user.mobile }}</Col>
+      </Row>
+      <Row gutter="2" class-name="row-top row-bottom">
+        <Col class-name="col-weight" span="5">邮箱：</Col>
+        <Col span="17">{{ user.email }}</Col>
+      </Row>
+      <!--<p class="user-model-img">
         <img :src="host + user.avatar" class="img" />
       </p>
       <p class="user-model-item">
@@ -45,7 +69,7 @@
       <p class="user-model-item">
         <label>邮箱：</label>
         <span>{{ user.email }}</span>
-      </p>
+      </p>-->
       <p>
         <Button type="error" long @click="myLogout">退出</Button>
       </p>
@@ -125,5 +149,20 @@ export default {
   .content {
     flex: 1;
   }
+}
+.ivu-divider-horizontal {
+  margin: 1rem 0 !important;
+}
+
+.col-weight {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.row-top {
+  margin-top: 1.6rem;
+}
+.row-bottom {
+  margin-bottom: 1rem;
 }
 </style>

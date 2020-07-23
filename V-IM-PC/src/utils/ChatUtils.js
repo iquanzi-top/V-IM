@@ -333,7 +333,7 @@ export const ChatListUtils = {
    * @returns {Chat} 当前会话
    */
   resetChatList: function(self, user, host, type) {
-    console.log("user:" + JSON.stringify(user));
+    console.log("用户:", JSON.stringify(user));
     let chatList = this.getChatList(self.$store.state.user.id);
     // 删除当前用户已经有的会话
     let newChatList = chatList.filter(function(element) {
